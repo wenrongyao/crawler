@@ -1,0 +1,274 @@
+[WARN ] 2018-02-05 17:29:20,407 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:18 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:21,199 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:18 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:21,916 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:19 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:22,652 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:20 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:23,463 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:21 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:24,214 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:21 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:26,756 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:24 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:27,507 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:25 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:28,280 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:26 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:29,121 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:26 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:29,769 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:27 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:29:30,436 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:28 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[INFO ] 2018-02-05 17:29:30,628 
+HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+[INFO ] 2018-02-05 17:29:30,635 
+HHH000412: Hibernate Core {4.3.11.Final}
+[INFO ] 2018-02-05 17:29:30,637 
+HHH000206: hibernate.properties not found
+[INFO ] 2018-02-05 17:29:30,639 
+HHH000021: Bytecode provider name : javassist
+[INFO ] 2018-02-05 17:29:30,672 
+HHH000043: Configuring from resource: hibernate.cfg.xml
+[INFO ] 2018-02-05 17:29:30,673 
+HHH000040: Configuration resource: hibernate.cfg.xml
+[WARN ] 2018-02-05 17:29:30,805 
+HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+[INFO ] 2018-02-05 17:29:30,840 
+HHH000041: Configured SessionFactory: null
+[WARN ] 2018-02-05 17:29:30,918 
+HHH000402: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2018-02-05 17:29:30,923 
+HHH000401: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost/crawler1.0?serverTimezone=GMT]
+[INFO ] 2018-02-05 17:29:30,923 
+HHH000046: Connection properties: {user=root, password=****}
+[INFO ] 2018-02-05 17:29:30,923 
+HHH000006: Autocommit mode: false
+[INFO ] 2018-02-05 17:29:30,924 
+HHH000115: Hibernate connection pool size: 12 (min=1)
+[INFO ] 2018-02-05 17:29:31,167 
+HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+[INFO ] 2018-02-05 17:29:31,353 
+HHH000399: Using default transaction strategy (direct JDBC transactions)
+[INFO ] 2018-02-05 17:29:31,358 
+HHH000397: Using ASTQueryTranslatorFactory
+[INFO ] 2018-02-05 17:29:31,740 
+HHH000228: Running hbm2ddl schema update
+[INFO ] 2018-02-05 17:29:31,740 
+HHH000102: Fetching database metadata
+[INFO ] 2018-02-05 17:29:31,742 
+HHH000396: Updating schema
+[INFO ] 2018-02-05 17:29:31,756 
+HHH000262: Table not found: Discuss_xiguakey
+[INFO ] 2018-02-05 17:29:31,767 
+HHH000262: Table not found: Transpond_xiguakey
+[INFO ] 2018-02-05 17:29:31,775 
+HHH000262: Table not found: VideoXiGua_xiguakey
+[INFO ] 2018-02-05 17:29:31,783 
+HHH000262: Table not found: Video_xiguakey
+[INFO ] 2018-02-05 17:29:31,794 
+HHH000262: Table not found: Discuss_xiguakey
+[INFO ] 2018-02-05 17:29:31,803 
+HHH000262: Table not found: Transpond_xiguakey
+[INFO ] 2018-02-05 17:29:31,812 
+HHH000262: Table not found: VideoXiGua_xiguakey
+[INFO ] 2018-02-05 17:29:31,821 
+HHH000262: Table not found: Video_xiguakey
+[INFO ] 2018-02-05 17:29:31,828 
+HHH000262: Table not found: Discuss_xiguakey
+[INFO ] 2018-02-05 17:29:31,837 
+HHH000262: Table not found: Transpond_xiguakey
+[INFO ] 2018-02-05 17:29:31,845 
+HHH000262: Table not found: VideoXiGua_xiguakey
+[INFO ] 2018-02-05 17:29:31,858 
+HHH000262: Table not found: Video_xiguakey
+[INFO ] 2018-02-05 17:29:34,557 
+HHH000232: Schema update complete
+[INFO ] 2018-02-05 17:29:34,581 
+HHH000043: Configuring from resource: hibernate.cfg.xml
+[INFO ] 2018-02-05 17:29:34,581 
+HHH000040: Configuration resource: hibernate.cfg.xml
+[WARN ] 2018-02-05 17:29:34,584 
+HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+[INFO ] 2018-02-05 17:29:34,588 
+HHH000041: Configured SessionFactory: null
+[WARN ] 2018-02-05 17:29:34,594 
+HHH000402: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2018-02-05 17:29:34,594 
+HHH000401: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost/crawler1.0?serverTimezone=GMT]
+[INFO ] 2018-02-05 17:29:34,595 
+HHH000046: Connection properties: {user=root, password=****}
+[INFO ] 2018-02-05 17:29:34,595 
+HHH000006: Autocommit mode: false
+[INFO ] 2018-02-05 17:29:34,595 
+HHH000115: Hibernate connection pool size: 12 (min=1)
+[INFO ] 2018-02-05 17:29:34,611 
+HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+[INFO ] 2018-02-05 17:29:34,622 
+HHH000399: Using default transaction strategy (direct JDBC transactions)
+[INFO ] 2018-02-05 17:29:34,622 
+HHH000397: Using ASTQueryTranslatorFactory
+[INFO ] 2018-02-05 17:29:34,656 
+HHH000228: Running hbm2ddl schema update
+[INFO ] 2018-02-05 17:29:34,656 
+HHH000102: Fetching database metadata
+[INFO ] 2018-02-05 17:29:34,657 
+HHH000396: Updating schema
+[INFO ] 2018-02-05 17:29:34,688 
+HHH000261: Table found: crawler1.0.discuss_xiguakey
+[INFO ] 2018-02-05 17:29:34,688 
+HHH000037: Columns: [author, comment, id, video, videoxigua, collectiondate]
+[INFO ] 2018-02-05 17:29:34,688 
+HHH000108: Foreign keys: [fk_84fnvjc6plfd5rkt55bpdxi3g, fk_iq1o4as9bv05atf990yph63da]
+[INFO ] 2018-02-05 17:29:34,688 
+HHH000126: Indexes: [fk_84fnvjc6plfd5rkt55bpdxi3g, fk_iq1o4as9bv05atf990yph63da, primary]
+[INFO ] 2018-02-05 17:29:34,713 
+HHH000261: Table found: crawler1.0.transpond_xiguakey
+[INFO ] 2018-02-05 17:29:34,713 
+HHH000037: Columns: [parent_id, name, id, video, collectiondate]
+[INFO ] 2018-02-05 17:29:34,713 
+HHH000108: Foreign keys: [fk_emuhah80ikpth3bvyipai1j6k, fk_k0toy512vn4xwb4i9aw2hv6ix]
+[INFO ] 2018-02-05 17:29:34,714 
+HHH000126: Indexes: [fk_emuhah80ikpth3bvyipai1j6k, primary, fk_k0toy512vn4xwb4i9aw2hv6ix]
+[INFO ] 2018-02-05 17:29:34,736 
+HHH000261: Table found: crawler1.0.videoxigua_xiguakey
+[INFO ] 2018-02-05 17:29:34,737 
+HHH000037: Columns: [comment_count, video_duration, datetime, video_like_count, play_effective_count, id_str, id, media_name, collectiondate, title, url]
+[INFO ] 2018-02-05 17:29:34,737 
+HHH000108: Foreign keys: []
+[INFO ] 2018-02-05 17:29:34,737 
+HHH000126: Indexes: [primary]
+[INFO ] 2018-02-05 17:29:34,757 
+HHH000261: Table found: crawler1.0.video_xiguakey
+[INFO ] 2018-02-05 17:29:34,757 
+HHH000037: Columns: [timesofplay, goodpress, author, id, authorlink, collectiondate, title, type, url, discuss, soundurl, transpond]
+[INFO ] 2018-02-05 17:29:34,758 
+HHH000108: Foreign keys: []
+[INFO ] 2018-02-05 17:29:34,758 
+HHH000126: Indexes: [primary]
+[INFO ] 2018-02-05 17:29:34,758 
+HHH000232: Schema update complete
+[WARN ] 2018-02-05 17:29:35,134 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:32 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:35,557 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6517423859791036942, play_effective_count=943, datetime=2018-02-01 11:33, media_name=芒果的妈, video_duration=119, video_like_count=7, title=狗爸，狗妈上演的“虐”狗案, comment_count=2, url=http://toutiao.com/group/6517423859791036942/]
+[WARN ] 2018-02-05 17:29:35,795 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:33 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:35,828 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6506416243782713870, play_effective_count=8107, datetime=2018-01-02 19:38, media_name=你不知道的生活, video_duration=11, video_like_count=30, title=南方狗和北方狗, comment_count=3, url=http://toutiao.com/group/6506416243782713870/]
+[WARN ] 2018-02-05 17:29:36,049 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:33 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:36,163 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6503800270323991054, play_effective_count=9938, datetime=2017-12-26 18:27, media_name=唯一的铃音, video_duration=67, video_like_count=62, title=狗妈妈修理狗儿子，心疼狗儿子！, comment_count=8, url=http://toutiao.com/group/6503800270323991054/]
+[WARN ] 2018-02-05 17:29:36,453 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:34 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:36,493 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6505538272381370894, play_effective_count=9万, datetime=2017-12-31 10:51, media_name=啃得皮, video_duration=25, video_like_count=177, title=狗与狗之间的区别, comment_count=81, url=http://toutiao.com/group/6505538272381370894/]
+[WARN ] 2018-02-05 17:29:36,730 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:34 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:36,769 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6516085553048322573, play_effective_count=755, datetime=2018-01-28 21:00, media_name=瞅你咋地吧, video_duration=16, video_like_count=9, title=吃的苦中苦 方为狗上狗, comment_count=0, url=http://toutiao.com/group/6516085553048322573/]
+[WARN ] 2018-02-05 17:29:37,029 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:34 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:37,069 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6498962733386433037, play_effective_count=1226, datetime=2017-12-13 17:34, media_name=潇湘佼人, video_duration=24, video_like_count=7, title=圣诞狗要不要？送狗了, comment_count=4, url=http://toutiao.com/group/6498962733386433037/]
+[WARN ] 2018-02-05 17:29:37,291 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:35 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:37,323 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6510098203822522888, play_effective_count=3076, datetime=2018-01-12 17:45, media_name=黄公子哥, video_duration=12, video_like_count=11, title=狗，................, comment_count=0, url=http://toutiao.com/group/6510098203822522888/]
+[WARN ] 2018-02-05 17:29:37,590 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:35 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:37,667 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6504852105168159245, play_effective_count=3602, datetime=2017-12-29 14:28, media_name=囡囡生活短视频, video_duration=9, video_like_count=9, title=狗妈妈不理狗女儿 因为啥事, comment_count=0, url=http://toutiao.com/group/6504852105168159245/]
+[WARN ] 2018-02-05 17:29:37,868 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:35 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:37,910 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6508535879441580557, play_effective_count=1000, datetime=2018-01-08 12:43, media_name=林木知秋, video_duration=15, video_like_count=0, title=狗生赢家，一狗战二虎, comment_count=1, url=http://toutiao.com/group/6508535879441580557/]
+[WARN ] 2018-02-05 17:29:38,275 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:35 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:38,354 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6506377219030385155, play_effective_count=1844, datetime=2018-01-02 17:06, media_name=蓝彩桦, video_duration=7, video_like_count=5, title=狗, comment_count=0, url=http://toutiao.com/group/6506377219030385155/]
+[WARN ] 2018-02-05 17:29:38,617 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:36 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:38,664 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6517199670966485517, play_effective_count=531, datetime=2018-01-31 21:03, media_name=长腿大叔侃侃看, video_duration=39, video_like_count=0, title=这狗肯定是条南方狗, comment_count=1, url=http://toutiao.com/group/6517199670966485517/]
+[WARN ] 2018-02-05 17:29:38,913 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:36 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:39,118 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6518330782820336135, play_effective_count=1080, datetime=2018-02-03 22:14, media_name=蔡叔叔讲画, video_duration=302, video_like_count=4, title=钢笔画素描：狗年画狗, comment_count=6, url=http://toutiao.com/item/6518330782820336135/]
+[WARN ] 2018-02-05 17:29:39,371 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:37 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:39,438 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6511969809809277447, play_effective_count=358, datetime=2018-01-17 18:48, media_name=太上老百姓, video_duration=96, video_like_count=10, title=爱狗女人的一群狗, comment_count=0, url=http://toutiao.com/group/6511969809809277447/]
+[WARN ] 2018-02-05 17:29:39,695 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:37 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:39,736 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6518869953905426957, play_effective_count=19, datetime=2018-02-05 09:05, media_name=香蕉视频台, video_duration=8, video_like_count=0, title=不会蹦迪的狗不是好狗, comment_count=0, url=http://toutiao.com/group/6518869953905426957/]
+[WARN ] 2018-02-05 17:29:39,954 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:37 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:40,004 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6508527185358225923, play_effective_count=1242, datetime=2018-01-08 12:09, media_name=蝶舞176361237, video_duration=10, video_like_count=6, title=这狗真能欺负狗, comment_count=0, url=http://toutiao.com/group/6508527185358225923/]
+[WARN ] 2018-02-05 17:29:40,239 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:37 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:40,302 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6489741853817045518, play_effective_count=2008, datetime=2017-11-18 21:13, media_name=小熊视频KU, video_duration=9, video_like_count=10, title=哈哈哈哈！狗：这狗有病吧！, comment_count=2, url=http://toutiao.com/group/6489741853817045518/]
+[WARN ] 2018-02-05 17:29:40,559 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:38 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:40,600 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6514618020432708110, play_effective_count=18万, datetime=2018-01-24 22:05, media_name=空心瓜憨憨, video_duration=11, video_like_count=416, title=别人的狗和我家的狗, comment_count=68, url=http://toutiao.com/group/6514618020432708110/]
+[WARN ] 2018-02-05 17:29:40,918 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:29:38 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "is.snssdk.com"
+[INFO ] 2018-02-05 17:29:41,000 
+向videoxigua_db数据库插入：VideoXiGua [id_str=6517627013539299843, play_effective_count=295, datetime=2018-02-02 00:42, media_name=初心大电影, video_duration=143, video_like_count=1, title=狗老大 狗老大 狗老大, comment_count=0, url=http://toutiao.com/group/6517627013539299843/]
+[WARN ] 2018-02-05 17:40:53,295 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:50 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:54,381 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:52 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:55,128 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:52 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:55,832 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:53 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:56,564 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:54 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:57,230 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:54 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:57,953 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:55 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:58,690 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:56 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:40:59,909 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:57 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:41:00,689 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:58 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[WARN ] 2018-02-05 17:41:01,300 
+Cookie rejected: "[version: 0][name: qh[360]][value: 1][domain: .feifei.com][path: /][expiry: Tue Feb 06 17:40:59 CST 2018]". Illegal domain attribute "feifei.com". Domain of origin: "security.snssdk.com"
+[INFO ] 2018-02-05 17:41:06,297 
+HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+[INFO ] 2018-02-05 17:41:06,646 
+HHH000412: Hibernate Core {4.3.11.Final}
+[INFO ] 2018-02-05 17:41:06,713 
+HHH000206: hibernate.properties not found
+[INFO ] 2018-02-05 17:41:06,719 
+HHH000021: Bytecode provider name : javassist
+[INFO ] 2018-02-05 17:41:07,417 
+HHH000043: Configuring from resource: hibernate.cfg.xml
+[INFO ] 2018-02-05 17:41:07,418 
+HHH000040: Configuration resource: hibernate.cfg.xml
+[WARN ] 2018-02-05 17:41:10,361 
+HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+[INFO ] 2018-02-05 17:41:10,679 
+HHH000041: Configured SessionFactory: null
+[WARN ] 2018-02-05 17:41:11,888 
+HHH000402: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2018-02-05 17:41:12,065 
+HHH000401: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost/videoc?serverTimezone=GMT]
+[INFO ] 2018-02-05 17:41:12,066 
+HHH000046: Connection properties: {user=root, password=****}
+[INFO ] 2018-02-05 17:41:12,066 
+HHH000006: Autocommit mode: false
+[INFO ] 2018-02-05 17:41:12,077 
+HHH000115: Hibernate connection pool size: 12 (min=1)
+[INFO ] 2018-02-05 17:41:14,331 
+西瓜程序启动异常Error calling Driver#connect
