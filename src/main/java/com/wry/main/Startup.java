@@ -63,9 +63,9 @@ import com.wry.util.BrowserPhantomjs;
  */
 public class Startup {
 	public static void main(String[] args) {
-		// String currentURL = System.getProperty("user.dir");
-		// R.CURRENTURL = currentURL;
-		// System.setProperty("logUrl", currentURL);
+		 String currentURL = System.getProperty("user.dir");
+		 R.CURRENTURL = currentURL;
+		 System.setProperty("logUrl", currentURL);
 		new MyFrame1("小视频采集软件").launch();
 	}
 
