@@ -14,7 +14,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import com.common.browser.Browser;
-import com.wry.log.LogUtil;
+import com.common.util.LogUtil;
 
 /**
  * ä¯ÀÀÆ÷Àà
