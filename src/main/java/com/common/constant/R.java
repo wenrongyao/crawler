@@ -27,9 +27,9 @@ public class R {
 	// 单页一级评论总数
 	public static Integer DISCUSS_NUMBER = 15;
 	// berkeledb数据库的存放位置
-	public static String BERKELEYDB_LOCATION = "//Crawler//berkeleyDB";
+	public static String BERKELEYDB_LOCATION = "/Crawler/berkeleyDB";
 	// codejs的url
-	public static String CODEJSURL = "//Crawler//code.js";
+	public static String CODEJSURL = "/Crawler/code.js";
 	// 当前路径
-	public static String CURRENTURL = "H://workspace//eclipst-ee//crawler";
+	public static String CURRENTURL = "H:/workspace/eclipst-ee/crawler";
 }

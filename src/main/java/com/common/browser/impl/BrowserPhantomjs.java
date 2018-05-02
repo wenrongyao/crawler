@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 import com.common.browser.Browser;
-import com.wry.constant.R;
+import com.common.constant.R;
 
 /**
  * 浏览器类用phantomjs实现
@@ -25,7 +25,9 @@ public class BrowserPhantomjs implements Browser{
 	public String httpGet(String url, Map<String, String> param) {
 		StringBuffer sb = new StringBuffer();
 		Runtime rt = Runtime.getRuntime();
-		String exec = R.CURRENTURL + "\\phantomjs-2.1.1-windows\\bin\\phantomjs " + param.get("currenturl") + param.get("codejsurl") + " " + url;
+		String exec = R.CURRENTURL + "/phantomjs-2.1.1-windows/bin/phantomjs " + param.get("currenturl") + param.get("codejsurl") + " " + url;
+System.out.println(exec);
+		
 		Process p = null;
 		BufferedReader br = null;
 		try {
@@ -40,7 +42,6 @@ public class BrowserPhantomjs implements Browser{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (br != null) {
