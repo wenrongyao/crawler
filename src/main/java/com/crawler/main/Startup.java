@@ -36,7 +36,7 @@ public class Startup {
 		String currentURL = System.getProperty("user.dir");
 		R.CURRENTURL = currentURL;
 		System.setProperty("logUrl", currentURL);
-		new MyFrame("小视频采集软件").launch();
+		new MyFrame("校视频采集软件").launch();
 	}
 
 }
@@ -158,7 +158,6 @@ class MyFrame extends JFrame {
 
 				// 当前执行程序标题-end
 				// 主窗口-end
-
 				Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 				glasspane.setBounds(50, 50, (dimension.width), (dimension.height) / 2);
 				myFrame.setGlassPane(glasspane);
@@ -224,7 +223,6 @@ class MyFrame extends JFrame {
 				buttonSearch = new JButton("搜索");
 				panelKey = new JPanel();
 				panelCheckBox = new JPanel();
-				// JScrollPane ScrollPaneCheckBox = new JScrollPane(panelCheckBox);
 				panelChoose = new JPanel();
 				panelButton = new JPanel();
 				// 画出主程序窗口的画面
@@ -240,8 +238,8 @@ class MyFrame extends JFrame {
 				panelButton.setBounds(10, 540, 60, 40);
 				panelButton.setBackground(new Color(245, 237, 205));
 				textFieldKey.setColumns(50);
-				textFieldKey.addKeyListener(new SearchMonitor());
-				buttonSearch.addActionListener(new SearchMonitor());
+				textFieldKey.addKeyListener(new WeibokeySearchMonitor());
+				buttonSearch.addActionListener(new WeibokeySearchMonitor());
 				panelKey.add(labelKey);
 				panelKey.add(textFieldKey);
 				panelKey.add(buttonSearch);
@@ -265,8 +263,8 @@ class MyFrame extends JFrame {
 				panelKey.setBounds(10, 10, 1025, 40);
 				panelKey.setBackground(new Color(245, 237, 205));
 				textFieldKey.setColumns(50);
-				textFieldKey.addKeyListener(new SearchMonitorxigua());
-				buttonSearch.addActionListener(new SearchMonitorxigua());
+				textFieldKey.addKeyListener(new XiGuaKeySearchMonitor());
+				buttonSearch.addActionListener(new XiGuaKeySearchMonitor());
 				scroll.setBounds(10, 60, 1025, 570);
 				panelKey.add(labelKey, 0);
 				panelKey.add(textFieldKey, 1);
@@ -285,7 +283,7 @@ class MyFrame extends JFrame {
 		 * @author Administrator
 		 *
 		 */
-		class SearchMonitorxigua extends KeyAdapter implements ActionListener {
+		class XiGuaKeySearchMonitor extends KeyAdapter implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -311,7 +309,7 @@ class MyFrame extends JFrame {
 		 * @author Administrator
 		 *
 		 */
-		class SearchMonitor extends KeyAdapter implements ActionListener {
+		class WeibokeySearchMonitor extends KeyAdapter implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -326,7 +324,7 @@ class MyFrame extends JFrame {
 		 * @author Administrator
 		 *
 		 */
-		class SureMonitor implements ActionListener {
+		class WeiboKeySureMonitor implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
