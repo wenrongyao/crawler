@@ -1,11 +1,12 @@
-package com.wry.util;
+package com.common.browser.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
 
+import com.common.browser.Browser;
 import com.wry.constant.R;
-
 
 /**
  * 浏览器类用phantomjs实现
@@ -13,18 +14,18 @@ import com.wry.constant.R;
  * @author Administrator
  *
  */
-public class BrowserPhantomjs {
+public class BrowserPhantomjs implements Browser{
 
 	/**
-	 * 根据url返回网页加载完成后的源代码
-	 * 
+	 * get 请求
 	 * @param url
+	 * @param param
 	 * @return
 	 */
-	public String httpGet(String url) {
+	public String httpGet(String url, Map<String, String> param) {
 		StringBuffer sb = new StringBuffer();
 		Runtime rt = Runtime.getRuntime();
-		String exec = R.CURRENTURL + "\\phantomjs-2.1.1-windows\\bin\\phantomjs " + R.CURRENTURL + R.JSURL + " " + url;
+		String exec = R.CURRENTURL + "\\phantomjs-2.1.1-windows\\bin\\phantomjs " + param.get("currenturl") + param.get("codejsurl") + " " + url;
 		Process p = null;
 		BufferedReader br = null;
 		try {
