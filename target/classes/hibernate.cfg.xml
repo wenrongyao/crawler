@@ -9,7 +9,7 @@
 
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost/crawler1.0?serverTimezone=GMT</property>
+		<property name="connection.url">jdbc:mysql://localhost/crawler?serverTimezone=GMT</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 
@@ -31,10 +31,11 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">update</property>
 
-		<mapping class="com.wry.model.Video" />
+		<!-- <mapping class="com.wry.model.Video" />
 		<mapping class="com.wry.model.Discuss" />
 		<mapping class="com.wry.model.Transpond" />
-		<mapping class="com.wry.model.VideoXiGua" />
+		<mapping class="com.wry.model.VideoXiGua" /> -->
+		<mapping class="com.weiboall.model.Video"/>
 	</session-factory>
 
 </hibernate-configuration>

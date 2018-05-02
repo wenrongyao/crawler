@@ -1,12 +1,14 @@
-package com.wry.model;
+package com.weiboall.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
@@ -21,15 +23,12 @@ import javax.persistence.Transient;
  */
 
 @Entity
-// 设置数据库名称，和唯一性约束条件，防止重复添加
-// @Table( uniqueConstraints = { @UniqueConstraint(columnNames = "title") })
+@Table(name = "视频基本信息—微博视频all")
 public class Video {
 	// 主键
 	private Integer id;
 	// 视频标题
 	private String title;
-	// 视频源链接
-	private String soundUrl;
 	// 视频创作者
 	private String author;
 	// 创作者链接
@@ -49,6 +48,7 @@ public class Video {
 	// 视频类型
 	private String type;
 
+	@Column(columnDefinition = "视频类型")
 	public String getType() {
 		return type;
 	}
@@ -57,10 +57,12 @@ public class Video {
 		this.type = type;
 	}
 
+	@Column(columnDefinition = "播放次数")
 	public String getTimesOfPlay() {
 		return timesOfPlay;
 	}
 
+	@Column(columnDefinition = "视频播放链接")
 	public String getUrl() {
 		return url;
 	}
@@ -83,6 +85,7 @@ public class Video {
 		this.collectionDate = sdf.format(date);
 	}
 
+	@Column(columnDefinition = "视频作者")
 	public String getAuthor() {
 		return author;
 	}
@@ -91,6 +94,7 @@ public class Video {
 		this.author = author;
 	}
 
+	@Column(columnDefinition = "作者主页链接")
 	public String getAuthorLink() {
 		return authorLink;
 	}
@@ -99,6 +103,7 @@ public class Video {
 		this.authorLink = authorLink;
 	}
 
+	@Column(columnDefinition = "视频评论")
 	public String getDiscuss() {
 		return discuss;
 	}
@@ -107,6 +112,7 @@ public class Video {
 		this.discuss = discuss;
 	}
 
+	@Column(columnDefinition = "视频转发")
 	public String getTranspond() {
 		return transpond;
 	}
@@ -115,6 +121,7 @@ public class Video {
 		this.transpond = transpond;
 	}
 
+	@Column(columnDefinition = "视频点赞数")
 	public String getGoodPress() {
 		return goodPress;
 	}
@@ -123,6 +130,7 @@ public class Video {
 		this.goodPress = goodPress;
 	}
 
+	@Column(columnDefinition = "视频采集日期")
 	public String getCollectionDate() {
 		return collectionDate;
 	}
@@ -133,6 +141,7 @@ public class Video {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition = "视频主键")
 	public Integer getId() {
 		return id;
 	}
@@ -141,20 +150,13 @@ public class Video {
 		this.id = id;
 	}
 
+	@Column(columnDefinition = "视频标题")
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getSoundUrl() {
-		return soundUrl;
-	}
-
-	public void setSoundUrl(String soundUrl) {
-		this.soundUrl = soundUrl;
 	}
 
 	@Transient
@@ -168,9 +170,8 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video [id=" + id + ", title=" + title + ", soundUrl=" + soundUrl + ", author=" + author
-				+ ", authorLink=" + authorLink + ", discuss=" + discuss + ", transpond=" + transpond + ", goodPress="
-				+ goodPress + ", collectionDate=" + collectionDate + "]";
+		return "Video [title=" + title + ", author=" + author + ", authorLink=" + authorLink + ", discuss=" + discuss
+				+ ", transpond=" + transpond + ", goodPress=" + goodPress + ", collectionDate=" + collectionDate
+				+ ", mid=" + mid + ", url=" + url + ", type=" + type + ", timesOfPlay=" + timesOfPlay + "]";
 	}
-
 }

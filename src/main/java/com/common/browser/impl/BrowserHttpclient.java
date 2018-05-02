@@ -26,7 +26,7 @@ public class BrowserHttpclient implements Browser{
 	private CloseableHttpClient httpClient;
 	private CloseableHttpResponse httpResponse;
 
-	public BrowserHttpclient() throws Exception {
+	public BrowserHttpclient() {
 		httpClient = HttpClientBuilder.create().build();
 	}
 

@@ -18,38 +18,18 @@ public class R {
 			+ "	alert_coverage=80\r\n" + "	qh[360]=1\r\n"
 			+ "	UM_distinctid=16160cb18000-04a08f668-5137027b-38400-16160cb18056a\r\n" + "	install_id=25377382466\r\n"
 			+ "	ttreq=1$2036ff535da35537f55a2599f42dd4cb5b803800\r\n" + "";
-	// 主题链接
-	public static String TITLE = "title_db";
-	// 娱乐
-	public static String VFUN = "vfun_db";
-	// 游戏
-	public static String GAME = "game_db";
-	// 舞蹈
-	public static String DANCE = "dance_db";
-	// 音乐
-	public static String MUSIC = "music_db";
-	// 电影
-	public static String MOVIE = "movie_db";
-	// 科技
-	public static String TECH = "tech_db";
-	// 涨姿势
-	public static String DISCOVERY = "discovery_db";
-	// 爱生活
-	public static String LIFESTYLE = "lifestyle_db";
-	// 明星综艺
-	public static String SHOW = "show_db";
-	// 微天下
-	public static String WORLD = "world_db";
-	// 体育健身
-	public static String SPORTS = "sports_db";
-	// 萌宠萌娃
-	public static String MOE = "moe_db";
+	// 待采集的url集合
+	public static String URLS = "urls";
 	// 爬取过的url
-	public static String VISITED = "visited_db";
+	public static String VISITEDURLS = "visitedurls";
+	// 微信小视频单次获取条数
+	public static Integer VIDEO_NUMBER = 25;
+	// 单页一级评论总数
+	public static Integer DISCUSS_NUMBER = 15;
 	// berkeledb数据库的存放位置
 	public static String BERKELEYDB_LOCATION = "//Crawler//berkeleyDB";
 	// codejs的url
 	public static String CODEJSURL = "//Crawler//code.js";
 	// 当前路径
-	public static String CURRENTURL = "D:\\项目\\毕设\\VideoC64";
+	public static String CURRENTURL = "H://workspace//eclipst-ee//crawler";
 }
