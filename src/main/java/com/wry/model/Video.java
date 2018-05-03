@@ -48,6 +48,8 @@ public class Video {
 	private String url;
 	// 视频类型
 	private String type;
+	// 视频播放次数
+	private String timesOfPlay;
 
 	public String getType() {
 		return type;
@@ -72,9 +74,6 @@ public class Video {
 	public void setTimesOfPlay(String timesOfPlay) {
 		this.timesOfPlay = timesOfPlay;
 	}
-
-	// 视频播放次数
-	private String timesOfPlay;
 
 	public Video() {
 		super();
@@ -149,6 +148,7 @@ public class Video {
 		this.title = title;
 	}
 
+	@Transient
 	public String getSoundUrl() {
 		return soundUrl;
 	}
@@ -168,7 +168,7 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video [id=" + id + ", title=" + title + ", soundUrl=" + soundUrl + ", author=" + author
+		return "Video [title=" + title + ", soundUrl=" + soundUrl + ", author=" + author
 				+ ", authorLink=" + authorLink + ", discuss=" + discuss + ", transpond=" + transpond + ", goodPress="
 				+ goodPress + ", collectionDate=" + collectionDate + "]";
 	}

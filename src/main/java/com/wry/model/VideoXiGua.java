@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  * 西瓜视频的信息
@@ -103,6 +104,7 @@ public class VideoXiGua {
 		this.datetime = datetime;
 	}
 
+	@Transient
 	public String getId_str() {
 		return id_str;
 	}

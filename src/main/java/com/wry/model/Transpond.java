@@ -109,7 +109,7 @@ public class Transpond {
 
 	@Override
 	public String toString() {
-		return "Transpond [id=" + id + ", name=" + name + ", video=" + video + ", children=" + children + ", parent="
+		return "Transpond [name=" + name + ", video=" + video + ", children=" + children + ", parent="
 				+ parent + "]";
 	}
 

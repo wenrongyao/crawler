@@ -140,7 +140,7 @@ class MyFrame1 extends JFrame {
 				btn1.setBounds(20, 50, 100, 30);
 				btn1.setBackground(new Color(245, 237, 205));
 				// 采集微博的全部小视频
-				btn1.addActionListener(new ButtonMonitor());
+				btn1.addActionListener(new FunctionButtonMonitor());
 				// 用来识别按钮
 				btn1.setActionCommand("微博视频all");
 				panelLeft.add(btn1);
@@ -149,7 +149,7 @@ class MyFrame1 extends JFrame {
 				btn2.setBackground(new Color(245, 237, 205));
 				btn2.setBounds(20, 110, 100, 30);
 				// 微博的关键字视频采集
-				btn2.addActionListener(new ButtonMonitor());
+				btn2.addActionListener(new FunctionButtonMonitor());
 				// 用来识别按钮
 				btn2.setActionCommand("微博视频key");
 				panelLeft.add(btn2);
@@ -158,7 +158,7 @@ class MyFrame1 extends JFrame {
 				btn3.setBackground(new Color(245, 237, 205));
 				btn3.setBounds(20, 170, 100, 30);
 				// 西瓜视频的关键字采集
-				btn3.addActionListener(new ButtonMonitor());
+				btn3.addActionListener(new FunctionButtonMonitor());
 				btn3.setActionCommand("西瓜视频key");
 				panelLeft.add(btn3);
 
@@ -190,6 +190,10 @@ class MyFrame1 extends JFrame {
 
 				// 当前执行程序标题-end
 				// 主窗口-end
+				
+				// 加载默认窗口
+				FunctionButtonMonitor fbm = new FunctionButtonMonitor();
+				fbm.actionPerformed(null);
 
 			}
 		});
@@ -202,7 +206,7 @@ class MyFrame1 extends JFrame {
 	 * @author Administrator
 	 *
 	 */
-	class ButtonMonitor implements ActionListener {
+	class FunctionButtonMonitor implements ActionListener {
 		// 微博关键字搜索画面
 		JLabel labelKey;
 		JTextField textFieldKey;
@@ -221,7 +225,10 @@ class MyFrame1 extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String actionCommand = e.getActionCommand();
+			String actionCommand = "微博视频all";
+			if(e != null) {
+				actionCommand = e.getActionCommand();
+			}
 			procudeIng.setText("当前执行---" + actionCommand);
 			paintAll(getGraphics());
 
@@ -237,14 +244,17 @@ class MyFrame1 extends JFrame {
 				panelChoose.setBounds(10, 10, 1025, 40);
 				panelChoose.setLayout(new FlowLayout(FlowLayout.LEFT));
 				panelChoose.add(new JLabel("请选择采集内容：", 0));
-				// panelChoose.add(new JCheckBox("基础信息"),1);
 				panelChoose.add(new JCheckBox("评论信息"), 1);
 				panelChoose.add(new JCheckBox("转发信息"), 2);
 				panelChoose.setBackground(new Color(245, 237, 205));
 				panelMain.add(panelChoose);
+				JButton buttonConfig = new JButton("设置采集参数");
+				panelChoose.add(buttonConfig);
 				JButton buttonSure = new JButton("开始采集");
 				buttonSure.addActionListener(new WeiboAllSureMonitor());
-				panelChoose.add(buttonSure, 3);
+				panelChoose.add(buttonSure, 4);
+				JButton buttonStop = new JButton("停止采集");
+				panelChoose.add(buttonStop,5);
 				scroll.setBounds(10, 60, 1025, 570);
 				panelMain.add(scroll);
 				paintAll(getGraphics());
@@ -633,6 +643,8 @@ class MyFrame1 extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
+				
 				JCheckBox checkBox = (JCheckBox) panelChoose.getComponent(1);
 				disscussChoose = checkBox.isSelected();
 				checkBox = (JCheckBox) panelChoose.getComponent(2);
