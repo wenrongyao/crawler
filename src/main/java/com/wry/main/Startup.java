@@ -2,13 +2,11 @@ package com.wry.main;
 
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Label;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -31,9 +29,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import org.json.JSONObject;
 
@@ -63,9 +63,9 @@ import com.wry.util.BrowserPhantomjs;
  */
 public class Startup {
 	public static void main(String[] args) {
-		 String currentURL = System.getProperty("user.dir");
-		 R.CURRENTURL = currentURL;
-		 System.setProperty("logUrl", currentURL);
+		String currentURL = System.getProperty("user.dir");
+		R.CURRENTURL = currentURL;
+		System.setProperty("logUrl", currentURL);
 		new MyFrame1("小视频采集软件").launch();
 	}
 
@@ -82,12 +82,8 @@ class MyFrame1 extends JFrame {
 
 	public MyFrame1(String name) throws HeadlessException {
 		super(name);
-		// 将自身对象保存
-		myFrame = this;
 	}
 
-	// 保存自身
-	private JFrame myFrame;
 	// 功能栏
 	private JPanel panelLeft = new JPanel();
 	// 主窗口
@@ -98,18 +94,23 @@ class MyFrame1 extends JFrame {
 	private JPanel panelMain = new JPanel();
 	// 执行程序的名字
 	private JLabel procudeIng = new JLabel();
-	// 等待图标
-	LoadingPanel glasspane = new LoadingPanel();
 
 	public void launch() {
-		// 窗口关闭
-		// 窗口关闭监听器
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				setVisible(false);
-				System.exit(0);
+		Thread t0 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// 窗口关闭监听器
+				addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent e) {
+						setVisible(false);
+						System.exit(0);
+					}
+				});
 			}
 		});
+		t0.start();
+
 		Thread t = new Thread(new Runnable() {
 
 			@Override
@@ -190,19 +191,13 @@ class MyFrame1 extends JFrame {
 				// 当前执行程序标题-end
 				// 主窗口-end
 
-				Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-				glasspane.setBounds(50, 50, (dimension.width), (dimension.height) / 2);
-				myFrame.setGlassPane(glasspane);
-				glasspane.setText("数据加载中，请稍后。。。");
-				glasspane.start();// 开始动画加载效果
 			}
 		});
 		t.start();
-
 	}
 
 	/**
-	 * 监听按钮
+	 * 监听功能选项按钮
 	 * 
 	 * @author Administrator
 	 *
@@ -221,6 +216,8 @@ class MyFrame1 extends JFrame {
 		JTextArea textAreaConsole;
 		// 滚动栏
 		JScrollPane scroll;
+		// 进度条
+		JPanel contentPane;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -274,11 +271,12 @@ class MyFrame1 extends JFrame {
 				panelButton.setBounds(10, 540, 60, 40);
 				panelButton.setBackground(new Color(245, 237, 205));
 				textFieldKey.setColumns(50);
-				textFieldKey.addKeyListener(new SearchMonitor());
-				buttonSearch.addActionListener(new SearchMonitor());
+				textFieldKey.addKeyListener(new WeiboakeySearchMonitor());
+				buttonSearch.addActionListener(new WeiboakeySearchMonitor());
 				panelKey.add(labelKey);
 				panelKey.add(textFieldKey);
 				panelKey.add(buttonSearch);
+
 				panelMain.add(panelKey);
 				panelMain.add(panelCheckBox);
 				panelMain.add(panelChoose);
@@ -300,8 +298,8 @@ class MyFrame1 extends JFrame {
 				panelKey.setBounds(10, 10, 1025, 40);
 				panelKey.setBackground(new Color(245, 237, 205));
 				textFieldKey.setColumns(50);
-				textFieldKey.addKeyListener(new SearchMonitorxigua());
-				buttonSearch.addActionListener(new SearchMonitorxigua());
+				textFieldKey.addKeyListener(new XiGuakeySearchMonitor());
+				buttonSearch.addActionListener(new XiGuakeySearchMonitor());
 				scroll.setBounds(10, 60, 1025, 570);
 				panelKey.add(labelKey, 0);
 				panelKey.add(textFieldKey, 1);
@@ -315,12 +313,12 @@ class MyFrame1 extends JFrame {
 		}
 
 		/**
-		 * 响应西瓜搜索按钮
+		 * 西瓜视频模块，响应西瓜搜索按钮
 		 * 
 		 * @author Administrator
 		 *
 		 */
-		class SearchMonitorxigua extends KeyAdapter implements ActionListener {
+		class XiGuakeySearchMonitor extends KeyAdapter implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -340,12 +338,12 @@ class MyFrame1 extends JFrame {
 					@Override
 					public void run() {
 						try {
-							textAreaConsole.append("采集开始，前面解析可能需要一点时间，请耐心等待！\n");
 							String keyWorld = URLEncoder.encode(textFieldKey.getText().trim(), "utf-8");
 							if ("".equals(keyWorld)) {
 								textFieldKey.setText("请输入关键词");
 								return;
 							}
+							textAreaConsole.append("采集开始，前面解析可能需要一点时间，请耐心等待！\n");
 							String url = "";
 							List<VideoXiGua> videoList = new ArrayList<>();
 							if (!"".equals(textFieldKey.getText().trim())) {
@@ -376,15 +374,17 @@ class MyFrame1 extends JFrame {
 								DiscussService discussService = new DiscussService();
 								for (VideoXiGua video : videoList) {
 									try {
-										url = "https://is.snssdk.com/video/app/article/full/15/1/" + video.getId_str()
-												+ "/" + video.getId_str()
-												+ "/1/0/?iid=25377382466&device_id=47753959844&ac=wifi&channel=vivo&aid=32&app_name=video_article&version_code=639&version_name=6.3.9&device_platform=android&ab_version=271217%2C236847%2C246276%2C273539%2C271584%2C271962%2C261931%2C217285%2C249822%2C268198%2C227960%2C249631%2C273774%2C252883%2C255490%2C252979%2C257292%2C249824%2C249819%2C249827%2C249830%2C273215%2C264627%2C272859%2C274099%2C150151&ssmix=a&device_type=vivo+Y51e&device_brand=vivo&language=zh&os_api=22&os_version=5.1.1&uuid=862063039571455&openudid=3375f0196b3f6b72&manifest_version_code=239&resolution=540*960&dpi=240&update_version_code=6392&_rticket=1517751215103&fp=zlTqLSPMcWs5FlP5LSU1FYwIFlK1&ts=1517751212&as=a275f017ec6aea0b576406&mas=008974dff05e53b841ddbbf5f83f8fef5aa30e8d165cb964e9a9c9";
-										browser = new BrowserHttpclientXIGua(url);
-										soundCode = browser.httpGet();
-										parser.parserVideoList(soundCode, video);
+										// url = "https://is.snssdk.com/video/app/article/full/15/1/" +
+										// video.getId_str()
+										// + "/" + video.getId_str()
+										// +
+										// "/1/0/?iid=25377382466&device_id=47753959844&ac=wifi&channel=vivo&aid=32&app_name=video_article&version_code=639&version_name=6.3.9&device_platform=android&ab_version=271217%2C236847%2C246276%2C273539%2C271584%2C271962%2C261931%2C217285%2C249822%2C268198%2C227960%2C249631%2C273774%2C252883%2C255490%2C252979%2C257292%2C249824%2C249819%2C249827%2C249830%2C273215%2C264627%2C272859%2C274099%2C150151&ssmix=a&device_type=vivo+Y51e&device_brand=vivo&language=zh&os_api=22&os_version=5.1.1&uuid=862063039571455&openudid=3375f0196b3f6b72&manifest_version_code=239&resolution=540*960&dpi=240&update_version_code=6392&_rticket=1517751215103&fp=zlTqLSPMcWs5FlP5LSU1FYwIFlK1&ts=1517751212&as=a275f017ec6aea0b576406&mas=008974dff05e53b841ddbbf5f83f8fef5aa30e8d165cb964e9a9c9";
+										// browser = new BrowserHttpclientXIGua(url);
+										// soundCode = browser.httpGet();
+										// parser.parserVideoList(soundCode, video);
 										JCheckBox checkBox = (JCheckBox) panelKey.getComponent(3);
 										boolean discussChoose = checkBox.isSelected();
-										textAreaConsole.append(video + "\n");
+										// textAreaConsole.append(video + "\n");
 										if (!discussChoose) {
 											videoXiGuaService.save(video);
 										}
@@ -441,20 +441,20 @@ class MyFrame1 extends JFrame {
 		}
 
 		/**
-		 * 响应微博搜索按钮
+		 * 微博视频key模块，响应微博搜索按钮
 		 * 
 		 * @author Administrator
 		 *
 		 */
-		class SearchMonitor extends KeyAdapter implements ActionListener {
+		class WeiboakeySearchMonitor extends KeyAdapter implements ActionListener {
 			List<Video> videoList;
 			String soundCode;
 			WeiboSearchParse parse;
+			String url;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				search();
-
 			}
 
 			@Override
@@ -465,11 +465,9 @@ class MyFrame1 extends JFrame {
 			}
 
 			private void search() {
-				glasspane.isVisible(true);
-				paintAll(getGraphics());
 				try {
 					String keyWorld = URLEncoder.encode(textFieldKey.getText().trim(), "utf-8");
-					String url = "";
+					url = "";
 					if (!"".equals(textFieldKey.getText().trim())) {
 						url = "http://s.weibo.com/weibo/" + keyWorld
 								+ "&xsort=hot&hasvideo=1&searchvideo=1&Refer=STopic_box";
@@ -477,42 +475,70 @@ class MyFrame1 extends JFrame {
 						textFieldKey.setText("请输入关键字");
 						return;
 					}
-					BrowserPhantomjs bs = new BrowserPhantomjs();
-					String soundCode = bs.httpGet(url);
-
-					// 给用户留一个选择选项，剩下的videoList是用户需要采集的视频信息。
-					parse = new WeiboSearchParse();
-					videoList = parse.parseVideos(soundCode);
-					if (videoList.size() == 0) {
-						glasspane.isVisible(false);
-						paintAll(getGraphics());
-						return;
-					}
-					panelCheckBox.removeAll();
-					panelCheckBox.setLayout(new GridLayout(videoList.size(), 1));
-					glasspane.isVisible(false);
+					contentPane = new JPanel();
+					contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+					panelKey.add(contentPane);
+					contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+					final JProgressBar progressBar = new JProgressBar();
+					progressBar.setStringPainted(true);
+					new Thread() {
+						public void run() {
+							for (int i = 0; i <= 100; i++) {
+								try {
+									Thread.sleep(300);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								progressBar.setValue(i);
+							}
+							progressBar.setString("加载完成！");
+						}
+					}.start();
+					contentPane.add(progressBar);
+					contentPane.setVisible(true);
 					paintAll(getGraphics());
-					for (int i = 0; i < videoList.size(); i++) {
-						JCheckBox checkbox = new JCheckBox(videoList.get(i).getTitle());
-						panelCheckBox.add(checkbox, i);
-					}
-					panelChoose.removeAll();
-					panelButton.removeAll();
-					panelChoose.add(new JLabel("请选择采集内容：", 0));
-					panelChoose.add(new JCheckBox("评论信息"), 1);
-					panelChoose.add(new JCheckBox("转发信息"), 2);
-					JButton buttonSure = new JButton("确认");
-					panelButton.add(buttonSure);
-					buttonSure.addActionListener(new SureMonitor());
-					paintAll(getGraphics());
-
-				} catch (Exception e1) {
+				} catch (UnsupportedEncodingException e) {
 				}
 
+				Thread t = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						try {
+							BrowserPhantomjs bs = new BrowserPhantomjs();
+							String soundCode = bs.httpGet(url);
+
+							// 给用户留一个选择选项，剩下的videoList是用户需要采集的视频信息。
+							parse = new WeiboSearchParse();
+							videoList = parse.parseVideos(soundCode);
+							if (videoList.size() == 0) {
+								return;
+							}
+							panelCheckBox.removeAll();
+							panelCheckBox.setLayout(new GridLayout(videoList.size(), 1));
+							for (int i = 0; i < videoList.size(); i++) {
+								JCheckBox checkbox = new JCheckBox(videoList.get(i).getTitle());
+								panelCheckBox.add(checkbox, i);
+							}
+							panelChoose.removeAll();
+							panelButton.removeAll();
+							panelChoose.add(new JLabel("请选择采集内容：", 0));
+							panelChoose.add(new JCheckBox("评论信息"), 1);
+							panelChoose.add(new JCheckBox("转发信息"), 2);
+							JButton buttonSure = new JButton("确认");
+							panelButton.add(buttonSure);
+							buttonSure.addActionListener(new SureMonitor());
+							paintAll(getGraphics());
+
+						} catch (Exception e1) {
+						}
+					}
+				});
+				t.start();
 			}
 
 			/**
-			 * 监听确认按钮
+			 * 微博视频key模块，监听选择后的确认按钮
 			 * 
 			 * @author Administrator
 			 *
@@ -525,8 +551,6 @@ class MyFrame1 extends JFrame {
 				@SuppressWarnings("static-access")
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					glasspane.isVisible(true);
-					paintAll(getGraphics());
 					try {
 						LogUtil.LogInfo("解析小视频开始-key");
 						// 计数器
@@ -581,10 +605,6 @@ class MyFrame1 extends JFrame {
 								videoService.save(video);
 							}
 						}
-
-						glasspane.isVisible(false);
-						paintAll(getGraphics());
-
 						new JOptionPane().showMessageDialog(null, "成功解析" + counter + "个视频，内容已存入数据库。", "提示框",
 								JOptionPane.WARNING_MESSAGE);
 						LogUtil.LogInfo("解析小视频结束-key，一个解析了" + counter + "个视频");
@@ -597,7 +617,7 @@ class MyFrame1 extends JFrame {
 		}
 
 		/**
-		 * 响应微博视频all的确认按钮
+		 * 微博视频all模块，响应微博视频all的开始采集按钮
 		 * 
 		 * @author Administrator
 		 *

@@ -35,22 +35,39 @@ public class XiGuaParser {
 			String id_str = "";
 			String play_effective_count = "";
 			String datetime = "";
+			String title = "";
+			String media_name = "";
+			String video_duration = "";
+			String comment_count = "";
+			String url = "";
 			VideoXiGua video = null;
 			for (int i = 0; i < array.length(); i++) {
-				jsonObj = new JSONObject(array.get(i).toString());
-				id_str = jsonObj.get("id_str").toString();
-				play_effective_count = jsonObj.getString("play_effective_count").toString();
-				datetime = jsonObj.get("datetime").toString();
-				video = new VideoXiGua();
-				video.setId_str(id_str);
-				video.setPlay_effective_count(play_effective_count);
-				video.setDatetime(datetime);
-				videoList.add(video);
-				textAreaConsole.append(video.getId_str() + "\n");
+				try {
+					jsonObj = new JSONObject(array.get(i).toString());
+					id_str = jsonObj.get("id_str").toString();
+					play_effective_count = jsonObj.get("play_effective_count").toString();
+					datetime = jsonObj.get("datetime").toString();
+					title = jsonObj.get("title").toString();
+					media_name = jsonObj.get("media_name").toString();
+					video_duration = jsonObj.get("video_duration").toString();
+					comment_count = jsonObj.get("comment_count").toString();
+					url = jsonObj.get("display_url").toString();
+					video = new VideoXiGua();
+					video.setId_str(id_str);
+					video.setPlay_effective_count(play_effective_count);
+					video.setDatetime(datetime);
+					video.setComment_count(comment_count);
+					video.setMedia_name(media_name);
+					video.setTitle(title);
+					video.setUrl(url);
+					video.setVideo_duration(video_duration);
+					videoList.add(video);
+					textAreaConsole.append(video + "\n");
+				} catch (Exception e) {
+				}
 			}
 			return true;
 		} catch (JSONException e) {
-			// e.printStackTrace();
 			return false;
 		}
 
@@ -68,7 +85,6 @@ public class XiGuaParser {
 			jsonObj = new JSONObject(data);
 			String media_name = jsonObj.get("media_name").toString();
 			String video_duration = jsonObj.get("video_duration").toString();
-			String video_like_count = jsonObj.get("video_like_count").toString();
 			String title = jsonObj.get("title").toString();
 			String comment_count = jsonObj.get("comment_count").toString();
 			String url = jsonObj.get("url").toString();
@@ -77,7 +93,6 @@ public class XiGuaParser {
 			video.setTitle(title);
 			video.setUrl(url);
 			video.setVideo_duration(video_duration);
-			video.setVideo_like_count(video_like_count);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

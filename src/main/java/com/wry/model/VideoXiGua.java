@@ -31,7 +31,7 @@ public class VideoXiGua {
 	// 视频时长
 	private String video_duration;
 	// 点赞数
-	private String video_like_count;
+//	private String video_like_count;
 	// 标题
 	private String title;
 	// 评论
@@ -55,13 +55,13 @@ public class VideoXiGua {
 		this.video_duration = video_duration;
 	}
 
-	public String getVideo_like_count() {
-		return video_like_count;
-	}
-
-	public void setVideo_like_count(String video_like_count) {
-		this.video_like_count = video_like_count;
-	}
+//	public String getVideo_like_count() {
+//		return video_like_count;
+//	}
+//
+//	public void setVideo_like_count(String video_like_count) {
+//		this.video_like_count = video_like_count;
+//	}
 
 	public String getTitle() {
 		return title;
@@ -139,8 +139,7 @@ public class VideoXiGua {
 	@Override
 	public String toString() {
 		return "VideoXiGua [id_str=" + id_str + ", play_effective_count=" + play_effective_count + ", datetime="
-				+ datetime + ", media_name=" + media_name + ", video_duration=" + video_duration + ", video_like_count="
-				+ video_like_count + ", title=" + title + ", comment_count=" + comment_count + ", url=" + url + "]";
+				+ datetime + ", media_name=" + media_name + ", video_duration=" + video_duration + ", title=" + title + ", comment_count=" + comment_count + ", url=" + url + "]";
 	}
 
 }
