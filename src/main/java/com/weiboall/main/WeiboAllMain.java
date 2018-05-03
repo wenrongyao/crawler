@@ -49,7 +49,7 @@ public class WeiboAllMain {
 		Map<String, String> titleMap = weiboParser.parserTitleLinks(soundCode);
 		BerkeleyDBService urls = new BerkeleyDBService(R.URLS);
 		BerkeleyDBService visitedUrls = new BerkeleyDBService(R.VISITEDURLS);
-		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(1);
+		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
 		for (Entry<String, String> entry : titleMap.entrySet()) {
 			fixedThreadPool.execute(new Runnable() {
 				String url;

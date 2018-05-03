@@ -209,6 +209,8 @@ class MyFrame extends JFrame {
 		Thread collectionThread;
 		// 线程停止标志
 		boolean collectionQuitFlag = false;
+		// 点击继续采集时，不需要重新获取，视频链接
+		boolean collectionContinue = false;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -490,6 +492,8 @@ class MyFrame extends JFrame {
 					// 将线程停止标志设置为真
 					collectionQuitFlag = true;
 				}
+				// 继续采集标志设置为真
+				collectionContinue = true;
 			}
 
 		}
@@ -517,7 +521,9 @@ class MyFrame extends JFrame {
 								WeiboAllMain weiboAllMain = new WeiboAllMain();
 								String url = "http://www.weibo.com/tv";
 								// 获取所有视频链接
-								weiboAllMain.getVideoUrls(url);
+								if(!collectionContinue) {
+									weiboAllMain.getVideoUrls(url);
+								}
 								BerkeleyDBService urls = new BerkeleyDBService(R.URLS);
 								BerkeleyDBService visitedUrls = new BerkeleyDBService(R.VISITEDURLS);
 								while (!collectionQuitFlag) {
@@ -534,11 +540,17 @@ class MyFrame extends JFrame {
 										JCheckBox discussChoose = (JCheckBox) panelChoose.getComponent(1);
 										if (discussChoose.isSelected()) {
 											List<Discuss> discussList = weiboAllMain.getDiscuss(video);
+											for(Discuss discuss : discussList) {
+												textAreaConsole.append(discuss.toString() + "\n");
+											}
 										}
 										// 转发信息被选择
 										JCheckBox transpondChoose = (JCheckBox) panelChoose.getComponent(2);
 										if (transpondChoose.isSelected()) {
 											List<Transpond> transpondList = weiboAllMain.getTranspond(video);
+											for(Transpond transpond : transpondList) {
+												textAreaConsole.append(transpond.toString() + "\n");
+											}
 										}
 
 										// 数据库存储操作
