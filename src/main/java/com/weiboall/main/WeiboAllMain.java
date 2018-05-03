@@ -5,10 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.common.browser.Browser;
 import com.common.browser.impl.BrowserHttpclient;
 import com.common.constant.R;
 import com.common.util.LogUtil;
@@ -40,20 +43,35 @@ public class WeiboAllMain {
 	 *            Ä¿±êÁ´½Ó
 	 */
 	public void getVideoUrls(String url) {
-		BrowserHttpclient bs = new BrowserHttpclient();
+		Browser bs = new BrowserHttpclient();
 		String soundCode = bs.httpGet(url, param);
 		WeiboAllParser weiboParser = new WeiboAllParser();
 		Map<String, String> titleMap = weiboParser.parserTitleLinks(soundCode);
 		BerkeleyDBService urls = new BerkeleyDBService(R.URLS);
+		BerkeleyDBService visitedUrls = new BerkeleyDBService(R.VISITEDURLS);
+		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(1);
 		for (Entry<String, String> entry : titleMap.entrySet()) {
-			url = entry.getValue();
-			bs = new BrowserHttpclient();
-			soundCode = bs.httpGet(url, param);
-			weiboParser = new WeiboAllParser();
-			Map<String, String> videoLinksMap = weiboParser.parserVideoLinks(soundCode, entry.getKey().toLowerCase());
-			for (Map.Entry<String, String> entity : videoLinksMap.entrySet()) {
-				urls.put(entity.getKey(), entity.getValue(), false);
-			}
+			fixedThreadPool.execute(new Runnable() {
+				String url;
+				Browser bs;
+				String soundCode;
+				WeiboAllParser weiboParser;
+
+				@Override
+				public void run() {
+					url = entry.getValue();
+					bs = new BrowserHttpclient();
+					soundCode = bs.httpGet(url, param);
+					weiboParser = new WeiboAllParser();
+					Map<String, String> videoLinksMap = weiboParser.parserVideoLinks(soundCode,
+							entry.getKey().toLowerCase());
+					for (Map.Entry<String, String> entity : videoLinksMap.entrySet()) {
+						if (visitedUrls.get(entry.getKey()) == null) {
+							urls.put(entity.getKey(), entity.getValue(), false);
+						}
+					}
+				}
+			});
 		}
 	}
 
@@ -115,7 +133,8 @@ public class WeiboAllMain {
 	public List<Transpond> getTranspond(Video video) {
 		List<Transpond> transpondList = new ArrayList<Transpond>();
 		try {
-			String url = "https://www.weibo.com/aj/v6/mblog/info/big?ajwvr=6&id=" + video.getMid() + "&__rnd=1512698545178";
+			String url = "https://www.weibo.com/aj/v6/mblog/info/big?ajwvr=6&id=" + video.getMid()
+					+ "&__rnd=1512698545178";
 			BrowserHttpclient bs = new BrowserHttpclient();
 			String jsonStr = bs.httpGet(url, param);
 			JSONObject jsonObj = new JSONObject(jsonStr);

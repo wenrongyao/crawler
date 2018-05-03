@@ -32,4 +32,8 @@ public class R {
 	public static String CODEJSURL = "/Crawler/code.js";
 	// 当前路径
 	public static String CURRENTURL = "H:/workspace/eclipst-ee/crawler";
+	// 采集总条数
+	public static Integer COLLECTIONCOUNT = 0;
+	// 定时任务间隔时间
+	public static Integer TIMETASK = 0;
 }
