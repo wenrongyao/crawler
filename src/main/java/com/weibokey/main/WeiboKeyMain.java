@@ -39,10 +39,8 @@ public class WeiboKeyMain {
 	public List<Video> getVideos(String url){
 		Browser bs = new BrowserPhantomjs();
 		String soundCode = bs.httpGet(url, param);
-System.out.println(soundCode);		
-		return null;
-//		WeiboKeyParser weiboKeyParser = new WeiboKeyParser();
-//		return weiboKeyParser.parseVideos(soundCode);
+		WeiboKeyParser weiboKeyParser = new WeiboKeyParser();
+		return weiboKeyParser.parseVideos(soundCode);
 	}
 	
 	/**

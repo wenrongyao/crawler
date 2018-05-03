@@ -1,9 +1,11 @@
 package com.common.browser.impl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Map;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.common.browser.Browser;
 import com.common.constant.R;
@@ -14,45 +16,39 @@ import com.common.constant.R;
  * @author Administrator
  *
  */
-public class BrowserPhantomjs implements Browser{
+public class BrowserPhantomjs implements Browser {
 
 	/**
 	 * get 请求
+	 * 
 	 * @param url
 	 * @param param
 	 * @return
 	 */
 	public String httpGet(String url, Map<String, String> param) {
-		StringBuffer sb = new StringBuffer();
-		Runtime rt = Runtime.getRuntime();
-		String exec = R.CURRENTURL + "/phantomjs-2.1.1-windows/bin/phantomjs " + param.get("currenturl") + param.get("codejsurl") + " " + url;
-		Process p = null;
-		BufferedReader br = null;
+		DesiredCapabilities dcaps = new DesiredCapabilities();
+		// ssl证书支持
+		dcaps.setCapability("acceptSslCerts", false);
+		// 截屏支持
+		dcaps.setCapability("takesScreenshot", false);
+		// css搜索支持
+		dcaps.setCapability("cssSelectorsEnabled", false);
+		// js支持
+		dcaps.setJavascriptEnabled(true);
+		// 驱动支持
+		dcaps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
+				R.CURRENTURL + "/phantomjs-2.1.1-windows/bin/phantomjs.exe");
+		WebDriver webDriver = null;
 		try {
-			p = rt.exec(exec);
-			// 为了使phantomjs的代码加载完全，线程休眠5秒钟
-			Thread.sleep(5000);
-			br = new BufferedReader(new InputStreamReader(p.getInputStream(), "utf-8"));
-			String s = null;
-			while ((s = br.readLine()) != null) {
-				sb.append(s);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
+			webDriver = new PhantomJSDriver(dcaps);
+			webDriver.get(url);
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (br != null) {
-				try {
-					br.close();
-					br = null;
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			if (webDriver != null) {
+				webDriver.close();
 			}
 		}
-
-		return sb.toString();
-
+		return webDriver.getPageSource();
 	}
 }
