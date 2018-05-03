@@ -19,12 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,6 +37,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.PlainDocument;
 
 import org.json.JSONObject;
 
@@ -190,7 +195,7 @@ class MyFrame1 extends JFrame {
 
 				// 当前执行程序标题-end
 				// 主窗口-end
-				
+
 				// 加载默认窗口
 				FunctionButtonMonitor fbm = new FunctionButtonMonitor();
 				fbm.actionPerformed(null);
@@ -222,11 +227,17 @@ class MyFrame1 extends JFrame {
 		JScrollPane scroll;
 		// 进度条
 		JPanel contentPane;
+		// 开始采集和停止采集公用的线程
+		Thread collectionThread;
+		// 线程停止标志
+		boolean collectionQuitFlag = false;
+		// 点击继续采集时，不需要重新获取，视频链接
+		boolean collectionContinue = false;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String actionCommand = "微博视频all";
-			if(e != null) {
+			if (e != null) {
 				actionCommand = e.getActionCommand();
 			}
 			procudeIng.setText("当前执行---" + actionCommand);
@@ -249,12 +260,14 @@ class MyFrame1 extends JFrame {
 				panelChoose.setBackground(new Color(245, 237, 205));
 				panelMain.add(panelChoose);
 				JButton buttonConfig = new JButton("设置采集参数");
-				panelChoose.add(buttonConfig);
+				buttonConfig.addActionListener(new WeiboAllConfigMonitor());
+				panelChoose.add(buttonConfig, 3);
 				JButton buttonSure = new JButton("开始采集");
 				buttonSure.addActionListener(new WeiboAllSureMonitor());
 				panelChoose.add(buttonSure, 4);
 				JButton buttonStop = new JButton("停止采集");
-				panelChoose.add(buttonStop,5);
+				buttonStop.addActionListener(new WeiboAllStopMonitor());
+				panelChoose.add(buttonStop, 5);
 				scroll.setBounds(10, 60, 1025, 570);
 				panelMain.add(scroll);
 				paintAll(getGraphics());
@@ -627,6 +640,119 @@ class MyFrame1 extends JFrame {
 		}
 
 		/**
+		 * 微博视频all模块，点击配置参数，弹框出现一个window，输出配置参数
+		 * 
+		 * @author WRY
+		 *
+		 */
+		class WeiboAllConfigMonitor implements ActionListener {
+			// 对话框
+			JDialog jDialog;
+			// 采集总数
+			JTextField jtfCount;
+			// 定时任务，设置间隔
+			JTextField jtfTime;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jDialog = new JDialog();
+				jDialog.setBounds(500, 130, 250, 150);
+				jDialog.setTitle("采集参数配置");
+				jDialog.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 13));
+				jDialog.add(new JLabel("采集条数"));
+				jtfCount = new JTextField(15);
+				jtfCount.setDocument(new NumberTextField());
+				jDialog.add(jtfCount);
+				jDialog.add(new JLabel("定时采集"));
+				jtfTime = new JTextField(15);
+				jtfTime.setDocument(new NumberTextField());
+				jDialog.add(jtfTime);
+				JButton buttonSure = new JButton("确认");
+				buttonSure.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							R.COLLECTIONCOUNT = Integer.parseInt(jtfCount.getText());
+						} catch (NumberFormatException e1) {
+						}
+						try {
+							R.TIMETASK = Integer.parseInt(jtfTime.getText());
+						} catch (NumberFormatException e1) {
+						}
+						jDialog.setVisible(false);
+					}
+				});
+				JButton buttonCancel = new JButton("取消");
+				buttonCancel.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						jDialog.setVisible(false);
+					}
+				});
+				jDialog.add(buttonSure);
+				jDialog.add(buttonCancel);
+				jDialog.setResizable(false);
+				// 确保弹出的窗口在其他窗口前面
+				jDialog.setModal(true);
+				jDialog.setVisible(true);
+				jDialog.paintAll(getGraphics());
+			}
+
+		}
+
+		/**
+		 * 数字输入框
+		 * 
+		 * @author WRY
+		 *
+		 */
+		class NumberTextField extends PlainDocument {
+			public NumberTextField() {
+				super();
+			}
+
+			public void insertString(int offset, String str, AttributeSet attr)
+					throws javax.swing.text.BadLocationException {
+				if (str == null) {
+					return;
+				}
+
+				char[] s = str.toCharArray();
+				int length = 0;
+				// 过滤非数字
+				for (int i = 0; i < s.length; i++) {
+					if ((s[i] >= '0') && (s[i] <= '9')) {
+						s[length++] = s[i];
+					}
+					// 插入内容
+					super.insertString(offset, new String(s, 0, length), attr);
+				}
+			}
+		}
+
+		/**
+		 * 微博视频all模块，响应停止按钮
+		 * 
+		 * @author WRY
+		 *
+		 */
+		class WeiboAllStopMonitor implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (collectionThread != null) {
+					// 将线程停止标志设置为真
+					collectionQuitFlag = true;
+				}
+				// 继续采集标志设置为真
+				collectionContinue = true;
+			}
+
+		}
+
+		/**
 		 * 微博视频all模块，响应微博视频all的开始采集按钮
 		 * 
 		 * @author Administrator
@@ -640,30 +766,45 @@ class MyFrame1 extends JFrame {
 			private ExecutorService fixedThreadPool = null;
 			// 用来记录解析链接或视频的个数
 			private int counter = 0;
+			// 采集条数
+			int collectionCount = 0;
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+				// 恢复执行
+				collectionQuitFlag = false;
 				JCheckBox checkBox = (JCheckBox) panelChoose.getComponent(1);
 				disscussChoose = checkBox.isSelected();
 				checkBox = (JCheckBox) panelChoose.getComponent(2);
 				transpondChoose = checkBox.isSelected();
-				Thread t = new Thread(new Runnable() {
+
+				collectionThread = new Thread(new Runnable() {
 
 					@Override
 					public void run() {
-						// 微博小视频的定向链接
-						String url = "https://www.weibo.com/tv";
-						// 获取标题链接
-						getTitleLinks(url);
-						// 获取视频链接
-						getVideoLinks();
-						// 获取视频内容
-						getVideoMessage();
+
+						TimerTask task = new TimerTask() {
+							@Override
+							public void run() {
+								// 获取所有视频链接
+								if (!collectionContinue) {
+									// 微博小视频的定向链接
+									String url = "https://www.weibo.com/tv";
+									// 获取标题链接
+									getTitleLinks(url);
+									// 获取视频链接
+									getVideoLinks();
+								}
+								// 获取视频内容
+								getVideoMessage();
+							}
+						};
+						Timer timer = new Timer();
+						// 没有设置定时或者，设置定时为负数，定时为没24小时执行一次
+						timer.scheduleAtFixedRate(task, 0, R.TIMETASK <= 0 ? 86400000 : R.TIMETASK);
 					}
 				});
-				t.start();
+				collectionThread.start();
 
 			}
 
@@ -773,71 +914,86 @@ class MyFrame1 extends JFrame {
 							@SuppressWarnings({ "null", "static-access" })
 							@Override
 							public void run() {
-								// 拿到某一个分类视频数据库的所有链接
-								Map<String, String> linkMap = cs.getAll_map();
-								if (linkMap.size() > 0) {
-									for (Entry<String, String> entry : linkMap.entrySet()) {
-										boolean status = true;
-										// 按个下载每个小视频页面
-										try {
-											BrowserHttpclient bs = new BrowserHttpclient(entry.getValue());
-											String html = bs.httpGet();
-											if (html == null && html.equals("")) {
-												LogUtil.LogInfo("视频内容页面未成功下载");
-												return;
-											}
-											// 一次解析每个小视频页面
-											WeiboParser weiboParser = new WeiboParser();
-											Video video = weiboParser.parserVideo(html);
-											// 视频链接
-											video.setUrl(entry.getValue());
-											// 视频类型
-											video.setType(dbName.toLowerCase());
-											textAreaConsole.append(video.toString() + "\n");
-											// 获取每个视频的评论
-											if (disscussChoose) {
-												List<Discuss> discussList = getDiscuss(video);
-												for (Discuss discuss : discussList) {
-													discuss.setVideo(video);
-													// 利用级联操作保存video
-													discussService.save(discuss);
-													textAreaConsole.append(discuss.toString() + "\n");
-												}
-											}
-											// 将视频信息存入数据库
-											// VideoManage videoManage = new VideoManage();
-											// videoManage.save(video);
-											// 解析每个视频的传播路径
-											if (transpondChoose) {
-												List<Transpond> transpondList = getTranspond(video);
-												for (Transpond transpond : transpondList) {
-													transpondService.save(transpond);
-													textAreaConsole.append(transpond.toString() + "\n");
-												}
-											}
-											if (!disscussChoose && !transpondChoose) {
-												VideoService videoService = new VideoService();
-												videoService.save(video);
-											}
-										} catch (Exception e) {
+								while (!collectionQuitFlag) {
+									// 拿到某一个分类视频数据库的所有链接
+									Map<String, String> linkMap = cs.getAll_map();
+									if (linkMap.size() > 0) {
+										for (Entry<String, String> entry : linkMap.entrySet()) {
+											boolean status = true;
+											// 按个下载每个小视频页面
 											try {
-												Thread.sleep(180000);
-												status = false;
-											} catch (InterruptedException e1) {
-												LogUtil.LogInfo("线程打断错误");
+												BrowserHttpclient bs = new BrowserHttpclient(entry.getValue());
+												String html = bs.httpGet();
+												if (html == null && html.equals("")) {
+													LogUtil.LogInfo("视频内容页面未成功下载");
+													return;
+												}
+												// 一次解析每个小视频页面
+												WeiboParser weiboParser = new WeiboParser();
+												Video video = weiboParser.parserVideo(html);
+												// 视频链接
+												video.setUrl(entry.getValue());
+												// 视频类型
+												video.setType(dbName.toLowerCase());
+												textAreaConsole.append(video.toString() + "\n");
+												counter += 1;
+												// 获取每个视频的评论
+												if (disscussChoose) {
+													List<Discuss> discussList = getDiscuss(video);
+													for (Discuss discuss : discussList) {
+														discuss.setVideo(video);
+														// 利用级联操作保存video
+														discussService.save(discuss);
+														textAreaConsole.append(discuss.toString() + "\n");
+													}
+												}
+												// 将视频信息存入数据库
+												// VideoManage videoManage = new VideoManage();
+												// videoManage.save(video);
+												// 解析每个视频的传播路径
+												if (transpondChoose) {
+													List<Transpond> transpondList = getTranspond(video);
+													for (Transpond transpond : transpondList) {
+														transpondService.save(transpond);
+														textAreaConsole.append(transpond.toString() + "\n");
+													}
+												}
+												if (!disscussChoose && !transpondChoose) {
+													VideoService videoService = new VideoService();
+													videoService.save(video);
+												}
+												// 这边是耗时操作，每循环一次，都需要校验一下,退出标志是否改变。
+												if (collectionQuitFlag) {
+													break;
+												}
+												collectionCount += 1;
+												// 如果采集数量设置了，且任务数等于采集数量，线程退出。
+												if (R.COLLECTIONCOUNT > 0) {
+													if (R.COLLECTIONCOUNT == collectionCount) {
+														collectionQuitFlag = true;
+														break;
+													}
+												}
+											} catch (Exception e) {
+												try {
+													Thread.sleep(180000);
+													status = false;
+												} catch (InterruptedException e1) {
+													LogUtil.LogInfo("线程打断错误");
+												}
+												LogUtil.LogInfo("访问过快" + e.getMessage());
 											}
-											LogUtil.LogInfo("访问过快" + e.getMessage());
+											if (status) {
+												// 解析过的链接加入已解析的数据库表
+												vs.put(entry.getKey(), entry.getValue(), false);
+												// 将链接从待解析列表移除
+												cs.remove(entry.getKey());
+											}
 										}
-										if (status) {
-											// 解析过的链接加入已解析的数据库表
-											vs.put(entry.getKey(), entry.getValue(), false);
-											// 将链接从待解析列表移除
-											cs.remove(entry.getKey());
-										}
-									}
 
-								} else {
-									LogUtil.LogInfo("待解析的域名不存在！");
+									} else {
+										LogUtil.LogInfo("待解析的域名不存在！");
+									}
 								}
 							}
 						});
